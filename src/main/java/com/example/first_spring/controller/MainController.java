@@ -3,9 +3,11 @@ package com.example.first_spring.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.first_spring.service.MainService;
 import com.example.first_spring.vo.UserVO;
 
 // templetController를 사용한다면 controller
@@ -14,6 +16,9 @@ import com.example.first_spring.vo.UserVO;
 public class MainController {
 // 아직 DB연동을 안해서 String값을 리턴해 줄것
 	// 어노테이션을 적으면 메인함수에서 따로 인스턴스화 안해도 알아서 다 해줌  
+	@Autowired
+	MainService service;
+	
 	@GetMapping("/index") // /index라는 url(주소)요청이 오면 call()메소드를 실행할게!
 	public String call() {
 		String word = "정지유 Hello world";
@@ -40,7 +45,7 @@ public class MainController {
 	}
 	
 	@GetMapping("/userlist")
-	public List<UserVO> callList(){
+	public List<UserVO> callList1(){
 		List<UserVO> list = new ArrayList<UserVO>();
 		UserVO vo1 = new UserVO();
 		vo1.setName("최승철");
