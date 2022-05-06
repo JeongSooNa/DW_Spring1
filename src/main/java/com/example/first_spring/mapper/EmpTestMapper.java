@@ -3,6 +3,7 @@ package com.example.first_spring.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.first_spring.vo.EmpVO;
 
@@ -25,4 +26,9 @@ public interface EmpTestMapper {
 	 * comment : 문제 3. 입사일이 '1980-12-17' ~ '1982-01-23'인 사원의 이름, 입사날짜 조회
 	 */
 	public List<EmpVO> selectEmpListDate();
+	
+	public EmpVO getEmp(int empNo);
+	
+	// mybatis에 parameter 2개 이상 넘길때는 @param 사용
+	public List<EmpVO> selectEmpListJobSal(@Param("job") String job, @Param("sal") int sal);
 }

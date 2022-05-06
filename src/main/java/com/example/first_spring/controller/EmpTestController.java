@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.first_spring.service.EmpTestService;
@@ -31,5 +32,15 @@ public class EmpTestController {
 	public List<EmpVO> callEmpListDate(){
 		return empTestService.getEmpListDate();
 	}
+	@GetMapping("/emp/no/{empNo}")
+	public EmpVO callEmp(@PathVariable("empNo") int empNo) {
+		return empTestService.getEmp(empNo);
+	}
 	
+	// 문제) job이 "MANAGER"이고 급여가 2000이상인 사원이름 조회
+	// 만약 job이 SALESMAN이라면 return null 
+	@GetMapping("/emp/job/{job}/sal/{sal}")
+	public List<EmpVO> callEmpListJobSal(@PathVariable("job") String job,@PathVariable("sal") int sal){
+		return empTestService.getEmpListJobSal(job, sal);
+	}
 }

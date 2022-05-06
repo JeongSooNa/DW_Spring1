@@ -23,4 +23,12 @@ public class EmpTestService {
 	public List<EmpVO> getEmpListDate(){
 		return empTestMapper.selectEmpListDate();
 	}
+	public EmpVO getEmp(int empNo) {
+		return empTestMapper.getEmp(empNo);
+	}
+	public List<EmpVO> getEmpListJobSal(String job, int sal) {
+		// service에 business logic 구현
+		if(job.equals("SALESMAN")) return null;
+		return empTestMapper.selectEmpListJobSal(job, sal);
+	}
 }

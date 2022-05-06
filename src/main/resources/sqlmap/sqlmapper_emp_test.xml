@@ -27,5 +27,21 @@
 			AND
 			date_format(820123,'%Y-%m-%d') > HIREDATE 
 	</select>
+	<select id="getEmp" resultType="EmpVO">
+		SELECT
+			ename
+		FROM emp
+		WHERE empno = #{empNo}
+	</select>
+	<select id="selectEmpListJobSal" resultType="EmpVO">
+		SELECT
+			ename
+		FROM emp
+		WHERE 
+			job = #{job}
+			AND
+			sal >= #{sal}
+	</select>
+	
 	
 </mapper>
