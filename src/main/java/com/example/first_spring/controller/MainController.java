@@ -14,12 +14,10 @@ import com.example.first_spring.vo.UserVO;
 // @Controller : 얘는 url을 요청받는 곳이라고 정해주는 것, import필요
 @RestController  // templetController 사용 x, 결과를 빨리 보기 위해서 RestController씀
 public class MainController {
-	@Autowired
-	MainService service;
 // 아직 DB연동을 안해서 String값을 리턴해 줄것
 	// 어노테이션을 적으면 메인함수에서 따로 인스턴스화 안해도 알아서 다 해줌  
 	@Autowired
-	MainService service;
+	private MainService service;
 	
 	@GetMapping("/index") // /index라는 url(주소)요청이 오면 call()메소드를 실행할게!
 	public String call() {
