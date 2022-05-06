@@ -18,6 +18,9 @@ public class MainController {
 	MainService service;
 // 아직 DB연동을 안해서 String값을 리턴해 줄것
 	// 어노테이션을 적으면 메인함수에서 따로 인스턴스화 안해도 알아서 다 해줌  
+	@Autowired
+	MainService service;
+	
 	@GetMapping("/index") // /index라는 url(주소)요청이 오면 call()메소드를 실행할게!
 	public String call() {
 		String word = "나정수 Hello world";
