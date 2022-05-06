@@ -1,0 +1,31 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- MyBatis에게 Mapper 경로를 적어야 한다. -->
+<mapper namespace="com.example.first_spring.mapper.EmpTestMapper">
+
+	<select id="selectEmpListLName" resultType="EmpVO">
+		SELECT
+			ename,
+			job
+		FROM emp
+		where ename like '%LL%'
+			
+	</select>
+	<select id="selectEmpListNullComm" resultType="EmpVO">
+		SELECT
+			ename,
+			comm
+		FROM emp
+		WHERE comm is null
+	</select>
+	<select id="selectEmpListDate" resultType="EmpVO">
+		SELECT
+			ename,
+			HIREDATE
+		FROM emp
+		WHERE
+			HIREDATE >= date_format(801217,'%Y-%m-%d')
+			AND
+			date_format(820123,'%Y-%m-%d') > HIREDATE 
+	</select>
+	
+</mapper>

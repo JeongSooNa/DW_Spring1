@@ -26,4 +26,10 @@ public interface MainMapper {
 	 * comment : dept table 전체 조회
 	 */
 	public List<DeptVO> getDeptList();
+	
+	/**
+	 * @return
+	 * comment : get Emp List When Deptno is 10
+	 */
+	public List<EmpVO> getEmpListDeptno10();
 }

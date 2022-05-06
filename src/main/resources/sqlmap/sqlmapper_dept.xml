@@ -9,4 +9,11 @@
 			loc
 		FROM dept
 	</select>
+	<select id="getEmpListDeptno10" resultType="EmpVO">
+		SELECT
+			ename
+		FROM emp
+		WHERE
+			deptno = 10;
+	</select>
 </mapper>
