@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.first_spring.service.EmpHomeworkService;
 import com.example.first_spring.vo.DeptVO;
 import com.example.first_spring.vo.EmpVO;
+import com.example.first_spring.vo.JoinVO;
 
 @RestController
 public class EmpHomeworkController {
@@ -43,7 +44,7 @@ public class EmpHomeworkController {
 	}
 	//문제 5. 사원번호 7782를 파라미터로 받고 해당 사원의 모든 정보(부서번호, 부서이름, 부서위치) 조회
 	@GetMapping("/emp/empno/{empno}")
-	public DeptVO callHomework5(@PathVariable("empno") int empno){
+	public JoinVO callHomework5(@PathVariable("empno") int empno){
 		return empHomeworkService.getHomework5(empno);
 	}
 }

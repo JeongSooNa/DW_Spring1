@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.first_spring.mapper.EmpHomeworkMapper;
 import com.example.first_spring.vo.DeptVO;
 import com.example.first_spring.vo.EmpVO;
+import com.example.first_spring.vo.JoinVO;
 
 @Service
 public class EmpHomeworkService {
@@ -29,7 +30,7 @@ public class EmpHomeworkService {
 	public EmpVO getHomework4(String jobName){
 		return empHomeworkMapper.selectHomework4(jobName);
 	}
-	public DeptVO getHomework5(int empno){
+	public JoinVO getHomework5(int empno){
 		return empHomeworkMapper.selectHomework5(empno);
 	}
 }

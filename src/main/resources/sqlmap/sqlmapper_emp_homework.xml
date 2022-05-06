@@ -41,17 +41,16 @@
 	<select id="selectHomework4" resultType="EmpVO">
 		SELECT
 			ename,
-			min(hiredate),
+			min(hiredate) as hiredate,
 			sal
 		FROM emp
 		WHERE job = #{jobName}
 	</select>
+	
 	<!-- 문제 5. 사원번호 7782를 파라미터로 받고 해당 사원의 모든 정보(부서번호, 부서이름, 부서위치) 조회 -->
-	<select id="selectHomework5" resultType="DeptVO">
+	<select id="selectHomework5" resultType="JoinVO">
 	SELECT
-		d.deptno,
-		d.dname,
-		d.loc
+		*
 	FROM dept as d
 	JOIN emp as e
 	ON d.deptno = e.deptno
