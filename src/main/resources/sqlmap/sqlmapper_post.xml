@@ -33,4 +33,22 @@
 	WHERE empno = #{empno}
 </update>
 
+<update id="updateCommEmp">
+	UPDATE emp
+	SET
+		comm = #{comm}
+	WHERE 
+		empno = #{empno}
+</update>
+
+<select id="selectCommEmp" resultType="EmpVO">
+	SELECT *
+	FROM emp
+	WHERE
+		job = #{job}
+		AND
+		sal >= #{sal}
+</select>
+
+
 </mapper>

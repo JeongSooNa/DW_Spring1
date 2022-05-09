@@ -1,5 +1,8 @@
 package com.example.first_spring.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +35,7 @@ public class PostService {
 	// error가 뜰 경우 이전 시점의 commit으로 돌아가기
 	// INSERT
 	@Transactional(rollbackFor = {Exception.class}) // 짱
+//	@Transactional(rollbackFor = {NullPointerException.class}) // null관련 error catch
 	public int getEmpUpdateCount(EmpVO vo) {
 		int rows = postMapper.updateEmp(vo);
 		
@@ -42,5 +46,17 @@ public class PostService {
 		// 서버에서는 error가 뜨는데 DB는 update가 된다!
 		
 		return rows;
+	}
+	
+	public List<EmpVO> getEmpJobSalUpdate(String job, int sal){
+		List<EmpVO> result = postMapper.selectCommEmp(job,sal);
+		int comm = 500;
+		int rows = 0;
+		for(int i=0;i<result.size();i++) {
+			EmpVO vo = new EmpVO();
+			vo.setEmpno(result.get(i).getEmpno());
+			rows += postMapper.updateCommEmp(vo.getEmpno(), comm);
+		}
+		return result;
 	}
 }

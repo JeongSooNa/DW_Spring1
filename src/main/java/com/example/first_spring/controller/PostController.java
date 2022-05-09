@@ -1,7 +1,11 @@
 package com.example.first_spring.controller;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,5 +42,20 @@ public class PostController {
 	public int callEmpUpdate(@RequestBody EmpVO empVO) {
 		return postService.getEmpUpdateCount(empVO);
 	}
+	
+	// job이 MANAGER고 sal이 2500이상 받는 사원
+	// comm 200으로 update
+	// ename, job, comm 조회
+	// Logic 구현은 Service에서
+	@GetMapping("/emp/job/{job}/sal/{sal}/update")
+	public List<EmpVO> callEmpJobSalUpdate(@PathVariable("job") String job, @PathVariable("sal") int sal) {
+		return postService.getEmpJobSalUpdate(job,sal);
+	}
+	
+	
+//	@GetMapping("/emp/job/{job}/sal/{sal}") 
+//	public List<EmpVO> callEmpListJobSal(@PathVariable("job") String job,@PathVariable("sal") int sal){
+//		return empTestService.getEmpListJobSal(job, sal);
+//	}
 	
 }
