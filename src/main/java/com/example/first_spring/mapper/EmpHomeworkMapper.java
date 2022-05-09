@@ -22,4 +22,5 @@ public interface EmpHomeworkMapper {
 	public EmpVO selectHomework4(String jobName);
 	//문제 5. 사원번호 7782를 파라미터로 받고 해당 사원의 모든 정보(부서번호, 부서이름, 부서위치) 조회
 	public JoinVO selectHomework5(int empno);
+	public EmpVO selectHomework5Join(int empno);
 }

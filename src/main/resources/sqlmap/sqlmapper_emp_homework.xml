@@ -57,4 +57,27 @@
 	WHERE
 		e.empno = #{empno}
 	</select>
+	
+	<!-- 문제 5. mybatis에서 join하기 -->
+	<resultMap type="EmpVO" id="EmpVO">
+		<result column="empno" property="empno"/>
+		<result column="ename" property="ename"/>
+		<result column="job" property="job"/>
+		<result column="sal" property="sal"/>
+		<result column="hiredate" property="hiredate"/>
+	</resultMap>
+	<resultMap type="DeptVO" id="DeptVO">
+		<result column="deptno" property="deptno"/>
+		<result column="dname" property="dname"/>
+		<result column="loc" property="loc"/>
+	</resultMap>
+	<select id="selectHomework5Join" resultType="EmpVO">
+	SELECT
+		*
+	FROM dept as d
+	JOIN emp as e
+	ON d.deptno = e.deptno
+	WHERE
+		e.empno = #{empno}
+	</select>
 </mapper>

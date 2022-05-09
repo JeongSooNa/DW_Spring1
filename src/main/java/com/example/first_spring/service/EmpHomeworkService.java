@@ -41,4 +41,7 @@ public class EmpHomeworkService {
 	public JoinVO getHomework5(int empno){
 		return empHomeworkMapper.selectHomework5(empno);
 	}
+	public EmpVO getHomework5Join(int empno){
+		return empHomeworkMapper.selectHomework5Join(empno);
+	}
 }
