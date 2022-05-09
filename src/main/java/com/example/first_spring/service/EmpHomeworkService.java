@@ -22,10 +22,18 @@ public class EmpHomeworkService {
 		return empHomeworkMapper.selectHomework1();
 	}
 	public List<EmpVO> getHomework2(int year){
+		if(empHomeworkMapper.selectHomework2(year).size() <= 3) {
+			return empHomeworkMapper.selectHomework2(1981);
+		}
 		return empHomeworkMapper.selectHomework2(year);
 	}
 	public EmpVO getHomework3(int month){
-		return empHomeworkMapper.selectHomework3(month);
+		int maxSal = 0;
+		EmpVO result = null;
+		for(EmpVO vo : empHomeworkMapper.selectHomework3(month)) {
+			if(vo.getSal() > maxSal) result = vo;
+		}
+		return result;
 	}
 	public EmpVO getHomework4(String jobName){
 		return empHomeworkMapper.selectHomework4(jobName);

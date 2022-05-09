@@ -15,6 +15,7 @@ public class EmpVO {
 	private int empno;
 	private String ename;
 	private String job;
+	private int sal;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date hiredate;
 
