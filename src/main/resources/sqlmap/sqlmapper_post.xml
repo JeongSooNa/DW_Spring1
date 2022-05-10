@@ -107,7 +107,7 @@
 	SELECT *
 	FROM emp
 	WHERE
-		ename LIKE #{search}"%"
+		ename LIKE #{search}"%" <!-- CONCAT(#{search},'%') -->
 </select>
 
 </mapper>

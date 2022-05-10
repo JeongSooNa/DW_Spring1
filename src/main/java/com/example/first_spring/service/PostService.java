@@ -91,7 +91,9 @@ public class PostService {
 	
 	//
 	public int getEmpNameCount(String search) {
-		return postMapper.selectEmpNameCount(search).size();
+		List<EmpVO> list = postMapper.selectEmpNameCount(search);
+		if(list != null) return list.size();
+		return 0;
 	}
 	
 }
