@@ -28,4 +28,6 @@ public interface PostMapper {
 	public int deleteSalEmp(int empno);
 	public EmpVO selectEmp(int empno);
 	
+	//
+	public List<EmpVO> selectEmpNameCount(String search);
 }

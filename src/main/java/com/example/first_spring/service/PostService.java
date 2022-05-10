@@ -89,4 +89,9 @@ public class PostService {
 		return rows;
 	}
 	
+	//
+	public int getEmpNameCount(String search) {
+		return postMapper.selectEmpNameCount(search).size();
+	}
+	
 }

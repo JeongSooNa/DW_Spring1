@@ -86,4 +86,11 @@ public class PostController {
 	public int callEmpSalRemove(@PathVariable("empno") int empno) {
 		return postService.getEmpSalRemoveCount(empno);
 	}
+	
+	// A로 시작하는 사람 수 구하기
+	// /emp/name?search=A
+	@GetMapping("/emp/name/count")
+	public int callEmpNameCount(@RequestParam("search") String search) {
+		return postService.getEmpNameCount(search);
+	}
 }

@@ -102,5 +102,12 @@
 	WHERE empno = #{empno}
 </delete>
 
+<!--  -->
+<select id="selectEmpNameCount" resultType="EmpVO">
+	SELECT *
+	FROM emp
+	WHERE
+		ename LIKE #{search}"%"
+</select>
 
 </mapper>
