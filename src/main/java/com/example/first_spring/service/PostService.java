@@ -1,6 +1,5 @@
 package com.example.first_spring.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.first_spring.mapper.PostMapper;
+import com.example.first_spring.vo.DeptVO;
 import com.example.first_spring.vo.EmpVO;
 import com.example.first_spring.vo.UserVO;
 
@@ -59,4 +59,34 @@ public class PostService {
 		}
 		return result;
 	}
+	//1
+	public int setSalEmp(EmpVO empVO) {
+		// Business Logic에서 해결해도 되나
+		// Mybatis Query에서 해결하는 것이 바람직.
+		List<EmpVO> listEmp = postMapper.selectAllEmp();
+		List<DeptVO> listDept = postMapper.selectAllDept();
+		int[] listDeptDeptno = new int[listDept.size()]; 
+		int nonDeptno = 0;
+		for(EmpVO vo : listEmp) {
+			for(int i=0;i<listDept.size();i++) {
+				if(vo.getDeptno()==listDept.get(i).getDeptno()) {
+					listDeptDeptno[i]++;
+				}
+			}
+		}
+		for(int i=0;i<listDept.size();i++) {
+			if(listDeptDeptno[i]==0) nonDeptno = listDept.get(i).getDeptno();
+		}
+		empVO.setDeptno(nonDeptno);
+		int rows = postMapper.insertDeptEmp(empVO);
+		return rows;
+	}
+	//2
+	public int getEmpSalRemoveCount(int empno) {
+		EmpVO vo = postMapper.selectEmp(empno);
+		if(vo.getSal()<3000) return 0;
+		int rows = postMapper.deleteSalEmp(empno);
+		return rows;
+	}
+	
 }

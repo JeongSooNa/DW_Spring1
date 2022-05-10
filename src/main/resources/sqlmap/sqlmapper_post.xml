@@ -50,5 +50,57 @@
 		sal >= #{sal}
 </select>
 
+<!-- 1. -->
+<!-- insert -->
+<insert id="insertDeptEmp">
+	INSERT INTO emp
+	(
+		empno,
+		ename,
+		deptno,
+		sal,
+		hiredate
+	)
+	VALUES
+	(
+		#{empno},
+		#{ename},
+		#{deptno},
+		#{sal},
+		#{hiredate}
+	)
+</insert>
+<!-- select all Emp -->
+<select id="selectAllEmp" resultType="EmpVO">
+	SELECT *
+	FROM emp
+</select>
+<!-- select all Dept -->
+<select id="selectAllDept" resultType="DeptVO">
+	SELECT *
+	FROM dept
+</select>
+<!-- Mybatis에서 구현하기 --> 
+<!-- 
+<select id="">
+	select d.deptno
+	from emp as e
+	right join dept as d
+	on e.deptno = d.deptno
+	where e.empno is null
+</select> 
+-->
+
+<!-- 2. -->
+<select id="selectEmp" resultType="EmpVO">
+	SELECT *
+	FROM emp
+	WHERE empno = #{empno}
+</select>
+<delete id="deleteSalEmp">
+	DELETE FROM emp
+	WHERE empno = #{empno}
+</delete>
+
 
 </mapper>

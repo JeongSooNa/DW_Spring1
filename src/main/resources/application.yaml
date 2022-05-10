@@ -12,3 +12,14 @@ spring:
       password: 2188
 ### propertises 일 경우
 ### spring.datasource.driver-class-name= 이렇게 써야함.
+   # JSP설정
+#   mvc:
+#      view:
+#         prefix: /WEB-INF/view/
+#         suffix: .jsp
+         
+#pagehelper:
+#   # 사용할 디비
+#   helper-dialect: mysql
+#   # 범위를 넘어가는 page가 요청오면 가능한 값으로 변경
+#   reasonable: true

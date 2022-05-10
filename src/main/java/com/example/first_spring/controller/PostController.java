@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.first_spring.service.PostService;
@@ -52,10 +53,37 @@ public class PostController {
 		return postService.getEmpJobSalUpdate(job,sal);
 	}
 	
+	// QueryString 으로 GetMapping
+	// 검색할 때 많이 사용
+	// tier?region=kr
+	@GetMapping("/tier")
+	public String callTier(@RequestParam("region") String region, @RequestParam("name") String name) {
+		return region+", "+name;
+	}
+	// 게시판 (현재 보고있는 페이지 & 한 페이지에 보여지는 row)
+	// board?page=1&pageSize=10&writer=나정수
+	@GetMapping("/board")
+	public int callBoard(@RequestParam("page") int page,@RequestParam("pageSize") int pageSize,@RequestParam("writer") String writer) {
+		System.out.println("현재 페이지는 : "+page);
+		System.out.println("한 페이지에 보여주는 row 수는 : "+pageSize);
+		System.out.println("작성자는 : "+writer);
+		return 0;
+	}
 	
-//	@GetMapping("/emp/job/{job}/sal/{sal}") 
-//	public List<EmpVO> callEmpListJobSal(@PathVariable("job") String job,@PathVariable("sal") int sal){
-//		return empTestService.getEmpListJobSal(job, sal);
-//	}
-	
+	// 1. emp에 없는 부서번호를 찾아서 사원 insert 될 때 해당 부서번호로 insert하기 
+	@PostMapping("/emp/dept")
+	public int callNonDeptnoEmpSet(@RequestBody EmpVO empVO) {
+		System.out.println("---");
+		System.out.println("사원 이름은 : "+empVO.getEname());
+		System.out.println("사원 번호는 : "+empVO.getEmpno());
+		System.out.println("사원 입사는 : "+empVO.getHiredate());
+		System.out.println("사원 급여는 : "+empVO.getSal());
+		return postService.setSalEmp(empVO);
+	}
+	// 2. 급여가 3000 이상인 사원만 삭제
+	// 급여가 3000 안되는 사람들은 return 0
+	@DeleteMapping("/emp/empno/{empno}/sal")
+	public int callEmpSalRemove(@PathVariable("empno") int empno) {
+		return postService.getEmpSalRemoveCount(empno);
+	}
 }
