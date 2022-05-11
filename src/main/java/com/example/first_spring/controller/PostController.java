@@ -109,6 +109,8 @@ public class PostController {
 	// 문제2. 사원번호가 7844번인 사원의 comm이 0이거나 null이면 기존 급여에서 500을 추가(수정)하시오.
 	@PatchMapping("emp/empno/{empno}/comm/sal/{addSal}")
 	public int callEmpEmpnoCommUpdate(@PathVariable("empno") int empno,@PathVariable("addSal") int addSal) {
+		// 요것도 마찬가지로 empno, sal 등 보다 VO를 넘겨주는 것이 좀 더 효율적이다
+		// (data 및 parameter가 많아질수록!)
 		return postService.getEmpEmpnoCommUpdate(empno, addSal);
 	}
 }
