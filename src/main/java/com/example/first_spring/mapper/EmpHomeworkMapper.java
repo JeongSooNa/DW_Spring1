@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.first_spring.vo.DeptVO;
 import com.example.first_spring.vo.EmpVO;
 import com.example.first_spring.vo.JoinVO;
 

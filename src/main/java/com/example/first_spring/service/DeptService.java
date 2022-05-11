@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.first_spring.mapper.MainMapper;
 import com.example.first_spring.vo.DeptVO;
-import com.example.first_spring.vo.EmpVO;
 
 @Service
 public class DeptService {
