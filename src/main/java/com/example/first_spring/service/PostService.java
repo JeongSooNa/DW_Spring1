@@ -96,4 +96,21 @@ public class PostService {
 		return 0;
 	}
 	
+	// if
+	public List<EmpVO> getEmpIsMgrList(String isMgr){
+		return postMapper.selectEmpMgr(isMgr);
+	}
+	// 문제1.
+	public int getEmpEmpnoUpdate(int empno,String job,int sal) {
+		return postMapper.updateEmpEmpno(empno,job,sal);
+	}
+	// 문제2.
+	public int getEmpEmpnoCommUpdate(int empno, int addSal) {
+		EmpVO vo = postMapper.selectEmp(empno);
+		// int형은 null을 받지 못하므로 integer로 바꿔서 null 여부 check 가능
+		if(vo.getComm() == 0) {
+			return postMapper.updateEmpEmpnoComm(empno, addSal);
+		}
+		return 0;
+	}
 }

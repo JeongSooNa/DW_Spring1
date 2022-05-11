@@ -93,4 +93,22 @@ public class PostController {
 	public int callEmpNameCount(@RequestParam("search") String search) {
 		return postService.getEmpNameCount(search);
 	}
+	
+	//if
+	@GetMapping("emp/mgr/{isMgr}")
+	public List<EmpVO> callEmpMgrList(@PathVariable("isMgr") String isMgr){
+		return postService.getEmpIsMgrList(isMgr);
+	}
+	// 문제1. 사원번호가 7902번인 사원 job을 SALESMAN, sal을 3500으로 수정하시오.
+	@PatchMapping("emp/empno/{empno}/job/{job}/sal/{sal}")
+	public int callEmpEmpnoUpdate(@PathVariable("empno") int empno,@PathVariable("job") String job,@PathVariable("sal") int sal) {
+		// @RequestBody로 받아 파라미터로 객체를 넘겨주는 것이 좋다!
+		// parameter가 3개이상... clean code를 따르쟈
+		return postService.getEmpEmpnoUpdate(empno,job,sal);
+	}
+	// 문제2. 사원번호가 7844번인 사원의 comm이 0이거나 null이면 기존 급여에서 500을 추가(수정)하시오.
+	@PatchMapping("emp/empno/{empno}/comm/sal/{addSal}")
+	public int callEmpEmpnoCommUpdate(@PathVariable("empno") int empno,@PathVariable("addSal") int addSal) {
+		return postService.getEmpEmpnoCommUpdate(empno, addSal);
+	}
 }

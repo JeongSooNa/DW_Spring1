@@ -30,4 +30,12 @@ public interface PostMapper {
 	
 	//
 	public List<EmpVO> selectEmpNameCount(String search);
+	
+	
+	// Mybatis에서 if문 사용하기
+	public List<EmpVO> selectEmpMgr(@Param("isMgr") String isMgr);
+	// 문제1.
+	public int updateEmpEmpno(@Param("empno")int empno,@Param("job")String job,@Param("sal")int sal);
+	// 문제2.
+	public int updateEmpEmpnoComm(@Param("empno") int empno,@Param("addSal") int addSal);
 }
