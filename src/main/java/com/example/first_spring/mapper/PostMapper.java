@@ -1,6 +1,7 @@
 package com.example.first_spring.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -38,4 +39,8 @@ public interface PostMapper {
 	public int updateEmpEmpno(@Param("empno")int empno,@Param("job")String job,@Param("sal")int sal);
 	// 문제2.
 	public int updateEmpEmpnoComm(@Param("empno") int empno,@Param("addSal") int addSal);
+	
+	
+	// map으로 db 받아오기
+	public List<Map<String, Object>> selectEmpMapList();
 }

@@ -1,6 +1,7 @@
 package com.example.first_spring.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,5 +113,12 @@ public class PostController {
 		// 요것도 마찬가지로 empno, sal 등 보다 VO를 넘겨주는 것이 좀 더 효율적이다
 		// (data 및 parameter가 많아질수록!)
 		return postService.getEmpEmpnoCommUpdate(empno, addSal);
+	}
+	
+	
+	// Map
+	@GetMapping("/emp/map/list")
+	public List<Map<String, Object>> callEmpMapList(){
+		return postService.getEmpMapList();
 	}
 }

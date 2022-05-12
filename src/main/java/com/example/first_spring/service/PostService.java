@@ -1,6 +1,7 @@
 package com.example.first_spring.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -112,5 +113,10 @@ public class PostService {
 			return postMapper.updateEmpEmpnoComm(empno, addSal);
 		}
 		return 0;
+	}
+	
+	// Map
+	public List<Map<String, Object>> getEmpMapList(){
+		return postMapper.selectEmpMapList();
 	}
 }

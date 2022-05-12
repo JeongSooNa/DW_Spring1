@@ -144,5 +144,19 @@
 	WHERE empno = #{empno}
 </update>
 
+<select id="selectEmpMapList" resultType="map">
+	SELECT
+		empno as "사원번호",
+		ename as "사원이름",
+		job as "직업",
+		sal as "사원급여",
+		e.deptno as "부서번호",
+		d.dname as "부서명",
+		d.loc as "부서위치"
+	FROM emp AS e
+	INNER JOIN dept AS d
+	ON e.deptno = d.deptno
+</select>
+
 
 </mapper>
