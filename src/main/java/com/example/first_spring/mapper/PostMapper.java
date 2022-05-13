@@ -36,11 +36,14 @@ public interface PostMapper {
 	// Mybatis에서 if문 사용하기
 	public List<EmpVO> selectEmpMgr(@Param("isMgr") String isMgr);
 	// 문제1.
-	public int updateEmpEmpno(@Param("empno")int empno,@Param("job")String job,@Param("sal")int sal);
+	public int updateEmpEmpno(@Param("empno")int empno,EmpVO empVO);
 	// 문제2.
 	public int updateEmpEmpnoComm(@Param("empno") int empno,@Param("addSal") int addSal);
 	
 	
 	// map으로 db 받아오기
 	public List<Map<String, Object>> selectEmpMapList();
+	
+	//
+	public int updateApi(EmpVO empVO);
 }

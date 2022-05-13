@@ -41,9 +41,9 @@ public class PostService {
 		int rows = postMapper.updateEmp(vo);
 		
 		// error만들어서 경험해보자!
-		UserVO user = null; // instance화 하지 않아 null이라 error
-		String name = user.getName();
-		System.out.println(name);
+//		UserVO user = null; // instance화 하지 않아 null이라 error
+//		String name = user.getName();
+//		System.out.println(name);
 		// 서버에서는 error가 뜨는데 DB는 update가 된다!
 		
 		return rows;
@@ -102,8 +102,8 @@ public class PostService {
 		return postMapper.selectEmpMgr(isMgr);
 	}
 	// 문제1.
-	public int getEmpEmpnoUpdate(int empno,String job,int sal) {
-		return postMapper.updateEmpEmpno(empno,job,sal);
+	public int getEmpEmpnoUpdate(int empno,EmpVO empVO) {
+		return postMapper.updateEmpEmpno(empno,empVO);
 	}
 	// 문제2.
 	public int getEmpEmpnoCommUpdate(int empno, int addSal) {
@@ -118,5 +118,11 @@ public class PostService {
 	// Map
 	public List<Map<String, Object>> getEmpMapList(){
 		return postMapper.selectEmpMapList();
+	}
+	
+	//
+	public int getApiUpdate(int empno, EmpVO empVO) {
+		empVO.setEmpno(empno);
+		return postMapper.updateApi(empVO);
 	}
 }

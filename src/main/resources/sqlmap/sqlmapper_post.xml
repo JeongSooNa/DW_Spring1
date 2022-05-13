@@ -9,15 +9,21 @@
 	(
 		empno,
 		ename,
+		job,
+		sal,
+		hiredate,
 		deptno,
-		hiredate
+		mgr
 	)
 	VALUES
 	(
 		#{empno},
 		#{ename},
+		#{job},
+		#{sal},
+		#{hiredate},
 		#{deptno},
-		now()
+		#{mgr}
 	)
 </insert>
 
@@ -74,6 +80,7 @@
 <select id="selectAllEmp" resultType="EmpVO">
 	SELECT *
 	FROM emp
+	ORDER BY empno
 </select>
 <!-- select all Dept -->
 <select id="selectAllDept" resultType="DeptVO">
@@ -157,6 +164,14 @@
 	INNER JOIN dept AS d
 	ON e.deptno = d.deptno
 </select>
+
+<update id="updateApi">
+	UPDATE emp
+	SET
+		job = #{job},
+		sal = #{sal}
+	WHERE empno = #{empno}
+</update>
 
 
 </mapper>

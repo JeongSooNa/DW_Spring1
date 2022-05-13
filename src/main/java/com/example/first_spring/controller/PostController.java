@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,6 +26,7 @@ public class PostController {
 	// PostMapping : 중요한 정보를 보내거나 데이터를 많이 보낼 때 post를 사용한다.
 	// ex) 회원가입
 	// @RequestBody가 parameter로 넘어오는 VO를 대신 new 해줌!
+	@CrossOrigin(origins = {"*"})
 	@PostMapping("/emp")
 	public int callEmpSet(@RequestBody EmpVO empVO) {
 		System.out.println("---");
@@ -35,6 +37,7 @@ public class PostController {
 	}
 	
 	// @DeleteMapping : data 삭제
+	@CrossOrigin(origins = {"*"})
 	@DeleteMapping("/emp/empno/{empno}")
 	public int callEmpRemove(@PathVariable("empno") int empno) {
 		return postService.getEmpRemoveCount(empno);
@@ -96,19 +99,20 @@ public class PostController {
 	}
 	
 	//if
-	@GetMapping("emp/mgr/{isMgr}")
+	@GetMapping("/emp/mgr/{isMgr}")
 	public List<EmpVO> callEmpMgrList(@PathVariable("isMgr") String isMgr){
 		return postService.getEmpIsMgrList(isMgr);
 	}
 	// 문제1. 사원번호가 7902번인 사원 job을 SALESMAN, sal을 3500으로 수정하시오.
-	@PatchMapping("emp/empno/{empno}/job/{job}/sal/{sal}")
-	public int callEmpEmpnoUpdate(@PathVariable("empno") int empno,@PathVariable("job") String job,@PathVariable("sal") int sal) {
+	@CrossOrigin(origins = {"*"})
+	@PatchMapping("/emp/empno/{empno}")
+	public int callEmpEmpnoUpdate(@PathVariable("empno") int empno,@RequestBody EmpVO empVO) {
 		// @RequestBody로 받아 파라미터로 객체를 넘겨주는 것이 좋다!
 		// parameter가 3개이상... clean code를 따르쟈
-		return postService.getEmpEmpnoUpdate(empno,job,sal);
+		return postService.getEmpEmpnoUpdate(empno,empVO);
 	}
 	// 문제2. 사원번호가 7844번인 사원의 comm이 0이거나 null이면 기존 급여에서 500을 추가(수정)하시오.
-	@PatchMapping("emp/empno/{empno}/comm/sal/{addSal}")
+	@PatchMapping("/emp/empno/{empno}/comm/sal/{addSal}")
 	public int callEmpEmpnoCommUpdate(@PathVariable("empno") int empno,@PathVariable("addSal") int addSal) {
 		// 요것도 마찬가지로 empno, sal 등 보다 VO를 넘겨주는 것이 좀 더 효율적이다
 		// (data 및 parameter가 많아질수록!)
@@ -120,5 +124,12 @@ public class PostController {
 	@GetMapping("/emp/map/list")
 	public List<Map<String, Object>> callEmpMapList(){
 		return postService.getEmpMapList();
+	}
+	
+	//
+	@CrossOrigin(origins = {"*"})
+	@PatchMapping("/api/v1/emp/{empno}")
+	public int callApi(@PathVariable("empno") int empno,@RequestBody EmpVO empVO) {
+		return postService.getApiUpdate(empno, empVO);
 	}
 }

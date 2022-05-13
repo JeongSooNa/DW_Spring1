@@ -19,6 +19,7 @@ public class EmpVO {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date hiredate;
 	private int comm;
+	private int mgr;
 	private int deptno;
 	private DeptVO deptvo;
 
